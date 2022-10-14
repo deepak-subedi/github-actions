@@ -6,7 +6,7 @@ jobs:
   job1:
     name: First Job
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Step one
         uses: actions/checkout@v3
@@ -24,3 +24,26 @@ jobs:
       
       - name: Step two
         run: "Get-ChildItem Env: | Sort-Object Name"
+
+  job3:
+    name: Third Job
+    runs-on: macos-latest
+
+    steps:
+      - name: Step one
+        uses: actions/checkout@v3
+      
+      - name: Step two
+        run: echo "Hello MAc"
+  
+  job4:
+    name: Fourth Job
+    runs-on: ubuntu-latest
+    needs: [job1, job2, job3]
+
+    steps:
+      - name: Step one 
+        uses: actions/checkout@v3
+      
+      - name: Step two
+        run: echo "Fourth Job"
